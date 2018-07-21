@@ -7,12 +7,12 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
 	firstname: { type: String, default: '' },
 	lastname: { type: String, default: '' },
-	username: { type: String, required: true, unique: true},
+	username: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
 	questions: [
 		{
 			prompt: { type: String, required: true },
-			answer: { type: String, required: true ,},
+			answer: { type: String, required: true },
 			score: { type: Number, default: 0 },
 			total: { type: Number, default: 0 },
 			mValue: { type: Number, default: 1 },
