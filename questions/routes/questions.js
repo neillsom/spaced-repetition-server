@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const Question = require('../../questions/questions');
+const Question = require('../questions');
 
 const router = express.Router();
 
