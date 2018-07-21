@@ -3,17 +3,16 @@
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
-	prompt: { type: String, required: true },
-	answer: { type: String, required: true }
+	word: { type: String },
+	answer: { type: String },
+	m: Number,
+	next: Number
 });
 
-questionSchema.index({ prompt: 1, answer: 1 }, { unique: true });
-
 questionSchema.set('toObject', {
-	transform: function (doc, ret) {
+	transform: (doc, ret) => {
 		ret.id = ret._id;
 		delete ret._id;
-		delete ret.__v;
 	}
 });
 
