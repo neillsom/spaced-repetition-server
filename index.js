@@ -42,8 +42,8 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 // Endpoints
-app.use('/api/auth', authRouter);
-// app.use('/api', authRouter);
+// app.use('/api/auth', authRouter);
+app.use('/api', authRouter);
 app.use('/api/users', userRouter);
 app.use('/api/questions', questionRouter);
 
