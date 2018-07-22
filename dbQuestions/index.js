@@ -63,7 +63,7 @@ let questions = [
 	},
 	{
 		'_id': '00010',
-		'prompt': 'Pink Lady's slipper',
+		'prompt': 'Pink Lady\'s slipper',
 		'answer': 'Cypripedium acaule',
 		'image': 'https://78.media.tumblr.com/355b6e93f404a405e445bb5080e5889d/tumblr_mhgh08UkKn1rqflawo1_1280.jpg'
 	},

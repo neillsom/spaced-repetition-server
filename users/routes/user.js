@@ -4,7 +4,7 @@ const express = require('express');
 const passport = require('passport');
 
 const User = require('../../users/user');
-const questions = require('../../defaultQuestions/index');
+const questions = require('../../dbQuestions');
 
 const router = express.Router();
 
@@ -77,7 +77,7 @@ router.post('/', (req, res, next) => {
 
 	// Create the new user
 	let { username, password } = req.body;
-	let defaultQuestions = questions.map((question, index) => ({
+	let dbQuestions = questions.map((question, index) => ({
 		question: question.question,
 		answer: question.answer,
 		m: 1,
@@ -88,7 +88,7 @@ router.post('/', (req, res, next) => {
 			const newUser = {
 				username,
 				password: digest,
-				questions: defaultQuestions,
+				questions: dbQuestions,
 				counter: 0
 			};
 			return User.create(newUser);
@@ -108,7 +108,6 @@ router.post('/', (req, res, next) => {
 		});
 });
 
-// GET ALL USERS
 router.get('/', (req, res, next) => {
 	User.find()
 		.then(user => {
@@ -120,10 +119,8 @@ router.get('/', (req, res, next) => {
 		});
 });
 
-// PROTECTION FOR THE FOLLOWING ENDPOINTS
 router.use('/', passport.authenticate('jwt', {session: false, failWithError: true}));
 
-// GET USER QUESTION HEAD
 router.get('/next', (req, res, next) => {
 	User.findOne({_id: req.user.id})
 		.then(user => {
@@ -135,7 +132,6 @@ router.get('/next', (req, res, next) => {
 		});
 });
 
-// POST ANSWER
 router.post('/answer', (req, res, next) => {
 	let { answer, userId } = req.body;
 	let answerToDisplayIfIncorrect = {};
@@ -196,7 +192,6 @@ router.post('/answer', (req, res, next) => {
 		});
 });
 
-// DELETE A USER BY ID
 router.delete('/:id', (req, res, next) => {
 	const { id } = req.params;
 
