@@ -1,59 +1,44 @@
 'use strict';
 
 require('dotenv').config();
-
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 
-const localStrategy = require('./auth/local');
-const jwtStrategy = require('./auth/jwt');
+
 const { PORT, CLIENT_ORIGIN } = require('./config');
-const { dbConnect, dbGet } = require('./db-mongoose');
+const { dbConnect } = require('./db-mongoose');
 
-// ROUTERS
-const userRouter = require('./users/routes/user');
-const authRouter = require('./users/routes/auth');
-const questionRouter = require('./questions/routes/questions');
+const localStrategy = require('./auth/local-strategy');
+const jwtStrategy = require('./auth/jwt');
 
-// Express app
+const userRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+const questionsRouter = require('./routes/questions');
+
 const app = express();
+app.use(express.json());
 
-// MORGAN
-app.use(
-	morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
-		skip: (req, res) => process.env.NODE_ENV === 'test'
-	})
-);
-
-// CORS
 app.use(
 	cors({
 		origin: CLIENT_ORIGIN
 	})
 );
 
-// Parse requiest body
-app.use(express.json());
-
-// Auth
+//call on passport for user authentication
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-// Endpoints
-// app.use('/api/auth', authRouter);
-app.use('/api', authRouter);
-app.use('/api/users', userRouter);
-app.use('/api/questions', questionRouter);
+app.use(
+	morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
+		skip: (req, res) => process.env.NODE_ENV === 'test'
+	})
+);
 
-// Catch-all 404
-app.use(function(req, res, next) {
-	const err = new Error('Not Found');
-	err.status = 404;
-	console.error(err);
-	next(err);
-});
+app.use('/api', userRouter);
+app.use('/api', authRouter);
+app.use('/api', questionsRouter);
 
 function runServer(port = PORT) {
 	const server = app
@@ -70,7 +55,5 @@ if (require.main === module) {
 	dbConnect();
 	runServer();
 }
-
-console.log(`MongoDB URI: ${dbGet().connection.host}:${dbGet().connection.port}`);
 
 module.exports = { app };

@@ -1,0 +1,57 @@
+[
+	{
+			"_id": "000000",
+      "firstname": "Jim",
+      "lastname": "Bob",
+      "username": "user0",
+      "password": "$2a$10$Cwa9s9HuarDN8h2/pd2WGOHuuAoPZmQQ5Ha8rYfMVPdoXIo1mppfa",
+			"questions": {
+					"head": {
+							"value": {
+									"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Ligusticum_porteri_habitus.jpg/800px-Ligusticum_porteri_habitus.jpg",
+			"answer": "Ligusticum",
+			"id": "00003",
+			"mValue": 1,
+			"correctTries": 0,
+			"totalTries": 0
+			
+							},
+							"next": {
+									"value": {
+											"image": "https://c1.staticflickr.com/1/274/18617150512_f97e42420b_b.jpg",
+			"answer": "Baptisia",
+			"id": "00004",
+			"mValue": 1,
+			"correctTries": 0,
+			"totalTries": 0
+									}
+							},
+							"next": {
+									"value": {
+											"image": "https://c1.staticflickr.com/7/6198/6093263204_79a99a5217_b.jpg",
+			"answer": "Panax",
+			"id": "00006",
+			"mValue": 1,
+			"correctTries": 0,
+			"totalTries": 0
+									}
+							},
+							"next": "null"
+					}
+			}
+	},
+	{
+			"_id": "000001",
+			"firstname": "Billy",
+			"lastname": "Dean",
+			"username": "user1",
+			"password": "$2a$10$Cwa9s9HuarDN8h2/pd2WGOHuuAoPZmQQ5Ha8rYfMVPdoXIo1mppfa"
+	},
+	{
+			"_id": "000002",
+	    "firstname": "Samantha",
+	    "lastname": "Smith",
+	    "username": "user2",
+	    "password": "$2a$10$Cwa9s9HuarDN8h2/pd2WGOHuuAoPZmQQ5Ha8rYfMVPdoXIo1mppfa"
+	}
+]
