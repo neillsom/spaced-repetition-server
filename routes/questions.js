@@ -33,7 +33,7 @@ router.post('/questions', jwtAuth, (req, res, next) => {
 		totalTries: 0,
 		correctTries: 0
 	};
-	console.log(req.body);
+	console.log('req.body: ',req.body);
 	User.findById(req.user.id)
 		.then(answer2 => {
 			let questions = answer2.questions;
