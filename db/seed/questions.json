@@ -1,91 +1,91 @@
 [
 	{
 		"image": "https://c1.staticflickr.com/3/2433/3836338698_70a57830b1_z.jpg?zz=1",
-		"answer": "eupatorium",
+		"answer": "eupatorium perfoliatum",
 		"id": "00000",
 		"colloquial": "Boneset"
 	},
 	{
 		"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/1552-Viburnum_prunifolium-DZ-8.12.JPG/800px-1552-Viburnum_prunifolium-DZ-8.12.JPG",
-		"answer": "viburnum",
+		"answer": "viburnum prunifolium",
 		"id": "00001",
 		"colloquial": "Black Haw"
 	},
 	{
 		"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Mahonia_aquifolium.jpg/1024px-Mahonia_aquifolium.jpg",
-		"answer": "mahonia",
+		"answer": "mahonia aquifolium",
 		"id": "00002",
 		"colloquial": "Oregon Grape"
 	},
 	{
 		"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Ligusticum_porteri_habitus.jpg/800px-Ligusticum_porteri_habitus.jpg",
-		"answer": "ligusticum",
+		"answer": "ligusticum porteri",
 		"id": "00003",
 		"colloquial": "Osha"
 	},
 	{
 		"image": "https://c1.staticflickr.com/1/274/18617150512_f97e42420b_b.jpg",
-		"answer": "baptisia",
+		"answer": "baptisia tinctoria",
 		"id": "00004",
 		"colloquial": "Wild Indigo"
 	},
 	{
 		"image": "https://c2.staticflickr.com/6/5596/31149429955_446412e88b_b.jpg",
-		"answer": "eriodictyon",
+		"answer": "eriodictyon californicum",
 		"id": "00005",
 		"colloquial": "Yerba Santa"
 	},
 	{
 		"image": "https://c1.staticflickr.com/7/6198/6093263204_79a99a5217_b.jpg",
-		"answer": "panax",
+		"answer": "panax quinquefolius",
 		"id": "00006",
 		"colloquial": "American ginseng"
 	},
 	{
 		"image": "https://c2.staticflickr.com/8/7455/9736602240_f0e2b13ac2_b.jpg",
-		"answer": "sanguinaria",
+		"answer": "sanguinaria canadensis",
 		"id": "00007",
 		"colloquial": "Bloodroot"
 	},
 	{
 		"image": "https://c1.staticflickr.com/9/8036/8070800436_608347d2ba_b.jpg",
-		"answer": "Echinaceae",
+		"answer": "echinaceae",
 		"id": "00008",
 		"colloquial": "echinaceae"
 	},
 	{
 		"image": "https://c1.staticflickr.com/5/4193/34340963161_7657cce445_b.jpg",
-		"answer": "Hydrastis",
+		"answer": "hydrastis canadensis",
 		"id": "00009",
 		"colloquial": "goldenseal"
 	},
 	{
 		"image": "https://78.media.tumblr.com/355b6e93f404a405e445bb5080e5889d/tumblr_mhgh08UkKn1rqflawo1_1280.jpg",
-		"answer": "cypripedium",
+		"answer": "cypripedium spp.",
 		"id": "00010",
 		"colloquial": "Pink Ladys slipper"
 	},
 	{
 		"image": "https://c2.staticflickr.com/6/5541/9035956585_8f6b0ee0bf_b.jpg",
-		"answer": "chamaelirium",
+		"answer": "chamaelirium luteum",
 		"id": "00011",
 		"colloquial": "False Unicorn"
 	},
 	{
 		"image": "https://c1.staticflickr.com/5/4763/24747250147_b248fbd420_o.jpg",
-		"answer": "ulmus",
+		"answer": "ulmus rubra",
 		"id": "00012",
 		"colloquial": "Slippery Elm"
 	},
 	{
 		"image": "https://c2.staticflickr.com/2/1654/25719072110_e87d03a64b_b.jpg",
-		"answer": "mitchella",
+		"answer": "mitchella repens",
 		"id": "00013",
 		"colloquial": "Partridge Berry"
 	},
 	{
 		"image": "https://78.media.tumblr.com/47f7a7c912bf7085660451331537a174/tumblr_mhi4mku3bv1rqflawo2_1280.jpg",
-		"answer": "caulophyllum",
+		"answer": "caulophyllum thalictroides",
 		"id": "00014",
 		"colloquial": "Blue Cohosh"
 	}
