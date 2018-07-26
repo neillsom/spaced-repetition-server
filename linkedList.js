@@ -20,8 +20,7 @@ class LinkedList {
 	insertLast(item) {
 		if (this.head === null) {
 			this.insertFirst(item);
-		}
-		else {
+		} else {
 			let tempNode = this.head;
 			while (tempNode.next !== null) {
 				tempNode = tempNode.next;
@@ -119,8 +118,7 @@ class LinkedList {
 			// and the item is not on the list
 			if (currNode.next === null) {
 				return null;
-			}
-			else {
+			} else {
 				//keep looking
 				currNode = currNode.next;
 			}
@@ -135,10 +133,9 @@ class LinkedList {
 
 	haveMvalue(correct) {
 		let currQuestion = this.head;
-		if(correct === true){
+		if (correct === true) {
 			currQuestion.value.Mvalue = currQuestion.value.Mvalue * 2;
-		}
-		else{
+		} else {
 			currQuestion.value.Mvalue = 1;
 		}
 		this.removeFirst();
@@ -152,7 +149,7 @@ function insertAt(mValue, list) {
 	//find the nth position (mValue) node is WHERE we want to insert
 	let node = list.head;
 	for (let i = 0; i < mValue; i++) {
-		if(!node.next) {
+		if (!node.next) {
 			break;
 		}
 		node = node.next;
@@ -168,9 +165,9 @@ function insertAt(mValue, list) {
 //updates position
 function updatePosition(list, mValueNew) {
 	list.head.value.mValue = mValueNew;
-	list.head.value.totalTries ++;
-	if (mValueNew !==1 ) {
-		list.head.value.correctTries ++;
+	list.head.value.totalTries++;
+	if (mValueNew !== 1) {
+		list.head.value.correctTries++;
 	}
 	return insertAt(mValueNew, list);
 }
@@ -190,5 +187,4 @@ function buildLinkedList(newList) {
 // M value * 2
 //else M value = 1
 
-module.exports = {LinkedList: LinkedList, updatePosition, buildLinkedList};
-
+module.exports = { LinkedList: LinkedList, updatePosition, buildLinkedList };
