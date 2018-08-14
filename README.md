@@ -12,16 +12,16 @@ Spaced repetition is a method for efficient learning that has you practice conce
 
 ## Screenshots
 Landing page:
-![Landing page](https://c2.staticflickr.com/2/1776/43756199611_2270218110_o.jpg "Landing page")
+![Landing page](https://lh3.googleusercontent.com/oksv4qG4iq1XFAAw7NAuxEFIPQBOIw4ge7F8X9MjaSmm0M_Yi8X3PQM936VLYlewes2prbx24GuE9WwO8-fV=w1920-h980-rw "Landing page")
 
 Sample question:
-![Sample question](https://c1.staticflickr.com/1/848/43040337174_781b7ca6e7_o.jpg "Sample question")
+![Sample question](https://lh4.googleusercontent.com/FnLSoIcR9Xb2kVUN-NLkPi8o44LQM5jq_CE1ZfdkYLTEpLRGkWaMKvatYVC7IhYTwjSvcEZtzwdR8ZvLv2gq=w1920-h980 "Sample question")
 
 Feedback:
-![Feedback](https://c2.staticflickr.com/2/1838/43756199771_d4455729c9_o.jpg "Feedback")
+![Feedback](https://lh5.googleusercontent.com/EiB7s4X0AkCnY7-0e-xim94uxQnzXUMwQD4ugZSpKsn_k6AoZgCqlq4VzAngFtMU2ExfX0haQfsJ_6E-O0_b=w1920-h980 "Feedback")
 
 Study guide:
-![Study guide](https://c2.staticflickr.com/2/1816/43756199701_406c989ace_o.jpg "Study guide")
+![Study guide](https://lh6.googleusercontent.com/TEWBVvK7kmARYxAzUMZpl--uN685R8ibFxPfXxDhqu8ABcK6tFluS8rHNXqQyYIFqIt1wWuSOGlwVUmjBmfj=w1920-h980-rw "Study guide")
 
 ## Tech/framework used
 <b>Built with</b>
