@@ -6,7 +6,7 @@ Spaced Repetition is a Node/Express and React application which showcases data s
 Spaced repetition is a method for efficient learning that has you practice concepts or skills over increasing periods of time. As a student of Western Herbalism and botany, I've had to memorize the common and scientific names of many, many plants. This app is a great solution to the problem and can easily be expanded or changed simply by updating the database. 
 
 ## Project Links
-- [Live application](https://sr-solo-client.herokuapp.com/)
+- [Live application](https://name-that-herb.herokuapp.com/)
 - [Server code repository](https://github.com/neillsom/spaced-repetition-server) 
 - [Client code repository](https://github.com/neillsom/spaced-repetition-client)
 
