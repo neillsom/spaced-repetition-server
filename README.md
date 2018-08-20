@@ -1,7 +1,7 @@
 
 ## Spaced Repetition: North American Medicinal Herbs
 
-Spaced Repetition is a Node/Express and React application which showcases data structures and algorithms. The site uses authentication and JWTs through the passport and bcyrpt libraries. A user can create an account, practice learning plant Latin names, sign out, and return to their previous progress.
+Spaced Repetition is a Node / Express and React application that showcases data structures and algorithms. The site uses authentication and JWTs through the passport and bcyrpt libraries. A user can create an account, practice learning plant Latin names, sign out, and return to their previous progress.
 
 ## Motivation
 Spaced repetition is a method for efficient learning that has you practice concepts or skills over increasing periods of time. As a student of Western Herbalism and botany, I've had to memorize the common and scientific names of many, many plants. This app is a great solution to the problem and can easily be expanded or changed simply by updating the database. 
@@ -37,6 +37,110 @@ Study guide:
 - Passport
 - Bcrypt
 
+## Code Example
+API Server Side
+```javascript
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  insertFirst(item) {
+    this.head = new _Node(item, this.head);
+  }
+
+  insertLast(item) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    } else {
+      let tempNode = this.head;
+      while (tempNode.next !== null) {
+        tempNode = tempNode.next;
+      }
+      tempNode.next = new _Node(item, null);
+    }
+  }
+  /**Inserts a new node after a node containing the key */
+  insertAfter(key, itemToInsert) {
+    let tempNode = this.head;
+    while (tempNode !== null && tempNode.value !== key) {
+      tempNode = tempNode.next;
+    }
+    if (tempNode !== null) {
+      tempNode.next = new _Node(itemToInsert, tempNode.next);
+    }
+  }
+...
+```
+
+Frontend Client Side
+```javascript
+class Question extends Component {
+  onSubmit = (event) => {
+    event.preventDefault();
+
+    let userAnswer = event.target.userInput.value.toLowerCase();
+    this.props.dispatch(postAnswer({
+      answer: userAnswer
+    }));
+    event.target.userInput.value = "";
+  }
+
+
+  render() {
+
+    const feedbackData = (this.props.feedback === undefined || this.props.answered === false) ? null : (
+      <div className="feedbackboard">
+        <p>{this.props.feedback.feedback}. The answer is: {this.props.feedback.answer}</p>
+        <br />
+        <p>You answered correctly {this.props.feedback.correctTries} out of {this.props.feedback.totalTries} guesses for this card</p>
+        <br />
+        <p>You answered correctly {this.props.correctScore} out of {this.props.totalScore} guesses for this session</p>
+      </div>
+    );
+
+    return (
+
+      <div className="questionboard">
+        <form onSubmit={event => { this.onSubmit(event), this.props.dispatch(toggleAnswered()) }}>
+
+
+          <div className="question-img-container" >
+            <img key={this.props.id} src={this.props.question} alt="medicinal herbs" />
+          </div>
+
+          {(this.props.answered === true) ? null :
+            <div className="conditional-input-submit">
+              <input className="userInput"
+                type="text"
+                name="userInput"
+                validate={[required, nonEmpty]}
+                required
+              />
+              <button className="button-submit">Submit</button>
+            </div>
+          }
+        </form>
+        <div className="feedback">
+          {feedbackData}
+        </div>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = state => ({
+  questions: state.questions,
+  answered: state.protectedData.answered,
+  question: state.protectedData.data.image,
+  id: state.protectedData.id,
+  feedback: state.protectedData.feedback,
+  totalScore: state.protectedData.totalScore,
+  correctScore: state.protectedData.correctScore
+});
+
+export default requiresLogin()(connect(mapStateToProps)(Question));
+```
 
 ## Installation
 - Set up Server
