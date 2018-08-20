@@ -24,7 +24,7 @@ Feedback:
 Study guide:
 ![Study guide](https://s3-us-west-2.amazonaws.com/neillsomerville/name-that-plant/2018-08-13_16-37-30.jpg "Study guide")
 
-## Tech/framework used
+## Tech / Frameworks used
 <b>Built with</b>
 - Javascript 
 - Node
@@ -38,7 +38,8 @@ Study guide:
 - Bcrypt
 
 ## Code Example
-API Server Side
+### API Server Side
+#### Linked list logic for question order
 ```javascript
 class LinkedList {
   constructor() {
@@ -73,7 +74,8 @@ class LinkedList {
 ...
 ```
 
-Frontend Client Side
+### Frontend Client Side
+#### Question component
 ```javascript
 class Question extends Component {
   onSubmit = (event) => {
