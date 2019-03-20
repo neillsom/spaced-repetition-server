@@ -173,18 +173,13 @@ function updatePosition(list, mValueNew) {
 }
 //builds our list
 function buildLinkedList(newList) {
-	questions.forEach(tool => {
-		tool.totalTries = 0;
-		tool.correctTries = 0;
-		tool.mValue = 1;
-		newList.insertLast(tool);
+	questions.forEach(plant => {
+		plant.totalTries = 0;
+		plant.correctTries = 0;
+		plant.mValue = 1;
+		newList.insertLast(plant);
 	});
 	return newList;
 }
-
-// M value??
-// if the answer is correct meant true
-// M value * 2
-//else M value = 1
 
 module.exports = { LinkedList: LinkedList, updatePosition, buildLinkedList };
