@@ -2,25 +2,20 @@
 
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
-const jwt = require('jsonwebtoken');
-const User = require('../models/users');
-const Question = require('../models/questions');
+const User = require('../models/user');
 const passport = require('passport');
-const LinkedList = require('../linkedList');
-//const { JWT_SECRET, JWT_EXPIRY } = require('../config');
-const seedData = require('../db/seed/questions.json');
-const { updatePosition } = require('../linkedList');
 
-const jwtAuth = passport.authenticate('jwt', { session: false, failWithError: true });
+const jwtAuth = passport.authenticate('jwt', {
+	session: false,
+	failWithError: true,
+});
 
 router.get('/questions', jwtAuth, (req, res, next) => {
+	// console.log(`router.get('/questions ...req:`, req, `router.get('/questions ...req end\n=================`);
+	// console.log(`router.get('/questions ...res:`, res, `router.get('/questions ...res end\n=================`);
 	User.findById(req.user.id)
-		.then(response => {
-			let result = response.questions.head.value;
-			console.log(result);
-			res.json(result);
+		.then(user => {
+			res.json(user.questions[user.head]);
 		})
 		.catch(err => {
 			next(err);
@@ -28,39 +23,55 @@ router.get('/questions', jwtAuth, (req, res, next) => {
 });
 
 router.post('/questions', jwtAuth, (req, res, next) => {
-	let result = {
-		feedback: 'You got it!',
-		totalTries: 0,
-		correctTries: 0
-	};
-	console.log('req.body: ',req.body);
-	User.findById(req.user.id)
-		.then(answer2 => {
-			let questions = answer2.questions;
-			result.totalTries = questions.head.value.totalTries;
-			result.correctTries = questions.head.value.correctTries;
-			result.answer = questions.head.value.answer;
-			console.log('answer2.questions.head.value.answer: ',answer2.questions.head.value.answer);
-			console.log('req.body.answer: ',req.body.answer);
-			if (answer2.questions.head.value.answer === req.body.answer) {
-				questions = updatePosition(questions, questions.head.value.mValue * 2);
-				result.correctTries++;
-				result.totalTries++;
+	const userId = req.user.id;
+	const userAnswer = req.body.answer;
+
+	User.findById(userId)
+		.then(user => {
+			const currentQuestionIndex = user.head;
+			const questionAnswer = user.questions[currentQuestionIndex];
+
+			questionAnswer.total = questionAnswer.total + 1;
+
+			let isCorrect = false;
+			let feedback = "Sorry! That's the wrong answer.";
+
+			if (userAnswer === questionAnswer.answer.toLowerCase()) {
+				isCorrect = true;
+				feedback = 'You got it!';
+				questionAnswer.score = questionAnswer.score + 1;
+				questionAnswer.mValue = questionAnswer.mValue * 2;
 			} else {
-				questions = updatePosition(questions, 1);
-				result.feedback = 'Sorry try again';
-				result.totalTries++;
+				questionAnswer.mValue = 1;
 			}
 
-			return User.findByIdAndUpdate(req.user.id, { $set: { questions } });
-		})
-		.then(() => {
-			res.json(result);
-			console.log(result);
-		})
-		.catch(err => {
-			next(err);
-		});
-});
+			let count = questionAnswer.mValue;
+			let workingQuestionAnswer = user.questions[currentQuestionIndex];
 
+			while (count && workingQuestionAnswer.next !== null) {
+				workingQuestionAnswer = user.questions[workingQuestionAnswer.next];
+				count--;
+			}
+
+			user.head = questionAnswer.next;
+			questionAnswer.next = workingQuestionAnswer.next;
+			workingQuestionAnswer.next = currentQuestionIndex;
+
+			user.save();
+
+			const results = {
+				feedback,
+				answer: questionAnswer.answer,
+				correct: isCorrect,
+				score: questionAnswer.score,
+				total: questionAnswer.total,
+				mValue: questionAnswer.mValue,
+			};
+
+			console.log(`results:`, results);
+
+			return res.json(results);
+		})
+		.catch(next);
+});
 module.exports = router;

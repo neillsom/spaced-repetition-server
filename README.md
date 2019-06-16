@@ -92,18 +92,18 @@ class Question extends Component {
   render() {
 
     const feedbackData = (this.props.feedback === undefined || this.props.answered === false) ? null : (
-      <div className="feedbackboard">
+      <div className="feedback-board">
         <p>{this.props.feedback.feedback}. The answer is: {this.props.feedback.answer}</p>
         <br />
         <p>You answered correctly {this.props.feedback.correctTries} out of {this.props.feedback.totalTries} guesses for this card</p>
         <br />
-        <p>You answered correctly {this.props.correctScore} out of {this.props.totalScore} guesses for this session</p>
+        <p>You answered correctly {this.props.sessionCorrectScore} out of {this.props.sessionTotalScore} guesses for this session</p>
       </div>
     );
 
     return (
 
-      <div className="questionboard">
+      <div className="question-board">
         <form onSubmit={event => { this.onSubmit(event), this.props.dispatch(toggleAnswered()) }}>
 
 
@@ -137,8 +137,8 @@ const mapStateToProps = state => ({
   question: state.protectedData.data.image,
   id: state.protectedData.id,
   feedback: state.protectedData.feedback,
-  totalScore: state.protectedData.totalScore,
-  correctScore: state.protectedData.correctScore
+  sessionTotalScore: state.protectedData.sessionTotalScore,
+  sessionCorrectScore: state.protectedData.sessionCorrectScore
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Question));
@@ -159,7 +159,7 @@ export default requiresLogin()(connect(mapStateToProps)(Question));
 - Set up local database
   - Start Mongo database: `mongod`
   - Seed database:
-    - From `YOUR_SERVER_PROJECT_NAME` directory: `node db/seed/questions.json`
+    - From `YOUR_SERVER_PROJECT_NAME` directory: `npm run seed`
 
 ## License
 MIT License
