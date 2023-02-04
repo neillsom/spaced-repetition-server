@@ -1,7 +1,7 @@
 
-## Spaced Repetition: North American Medicinal Herbs
+## Name That Plant
 
-Spaced Repetition is a Node / Express and React application that showcases data structures and algorithms. The site uses authentication and JWTs through the passport and bcyrpt libraries. A user can create an account, practice learning plant Latin names, sign out, and return to their previous progress.
+Name That Plant is a Node & React application that showcases spaced repetition learning through the use of linked list data structure. The site features authentication and JWTs through the Passport and Bcyrpt libraries. A user can create an account, practice learning latin plant names, sign out, and return to their previous progress after signing back in.
 
 ## Motivation
 Spaced repetition is a method for efficient learning that has you practice concepts or skills over increasing periods of time. As a student of Western Herbalism and botany, I've had to memorize the common and scientific names of many, many plants. This app is a great solution to the problem and can easily be expanded or changed simply by updating the database. 
@@ -13,16 +13,16 @@ Spaced repetition is a method for efficient learning that has you practice conce
 
 ## Screenshots
 Landing page:
-![Landing page](https://s3-us-west-2.amazonaws.com/neillsomerville/name-that-plant/2018-08-13_16-32-39.jpg "Landing page")
+![Landing page](https://neillsomerville.s3.us-west-2.amazonaws.com/name-that-plant/landingpage.png "Landing page")
 
 Sample question:
-![Sample question](https://s3-us-west-2.amazonaws.com/neillsomerville/name-that-plant/2018-08-13_16-33-49.jpg "Sample question")
+![Sample question](https://neillsomerville.s3.us-west-2.amazonaws.com/name-that-plant/samplequestion.png "Sample question")
 
 Feedback:
-![Feedback](https://s3-us-west-2.amazonaws.com/neillsomerville/name-that-plant/2018-08-13_16-35-40.jpg "Feedback")
+![Feedback](https://neillsomerville.s3.us-west-2.amazonaws.com/name-that-plant/feedback.png "Feedback")
 
 Study guide:
-![Study guide](https://s3-us-west-2.amazonaws.com/neillsomerville/name-that-plant/2018-08-13_16-37-30.jpg "Study guide")
+![Study guide](https://neillsomerville.s3.us-west-2.amazonaws.com/name-that-plant/studyguide.png "Study guide")
 
 ## Tech / Frameworks used
 <b>Built with</b>
@@ -78,67 +78,85 @@ class LinkedList {
 #### Question component
 ```javascript
 class Question extends Component {
-  onSubmit = (event) => {
-    event.preventDefault();
+	onSubmit = event => {
+		event.preventDefault();
 
-    let userAnswer = event.target.userInput.value.toLowerCase();
-    this.props.dispatch(postAnswer({
-      answer: userAnswer
-    }));
-    event.target.userInput.value = "";
-  }
+		let userAnswer = event.target.userInput.value.toLowerCase();
+		this.props.dispatch(
+			postAnswer({
+				answer: userAnswer,
+			})
+		);
+		event.target.userInput.value = '';
+	};
 
+	render() {
+		const feedbackData =
+			this.props.feedback === undefined ||
+			this.props.answered === false ? null : (
+				<div className="feedback-board">
+					<p>
+						{this.props.feedback.feedback} The answer is:{' '}
+						<span className="feedback-answer-name">
+							{this.props.feedback.answer}
+						</span>
+					</p>
+					<p>
+						You answered correctly {this.props.feedback.score} out of{' '}
+						{this.props.feedback.total} total times
+					</p>
+					<p>
+						You answered correctly {this.props.sessionCorrectScore} out of{' '}
+						{this.props.sessionTotalScore} times this session
+					</p>
+				</div>
+			);
 
-  render() {
+		return (
+			<div className="question-board">
+				<form
+					onSubmit={event => {
+						this.onSubmit(event), this.props.dispatch(toggleAnswered());
+					}}
+				>
+					<div className="question-img-container">
+						<img
+							key={this.props.id}
+							src={this.props.question}
+							alt={
+								'A photo of the medicinal plant called ' + this.props.colloquial
+							}
+						/>
+					</div>
 
-    const feedbackData = (this.props.feedback === undefined || this.props.answered === false) ? null : (
-      <div className="feedback-board">
-        <p>{this.props.feedback.feedback}. The answer is: {this.props.feedback.answer}</p>
-        <br />
-        <p>You answered correctly {this.props.feedback.correctTries} out of {this.props.feedback.totalTries} guesses for this card</p>
-        <br />
-        <p>You answered correctly {this.props.sessionCorrectScore} out of {this.props.sessionTotalScore} guesses for this session</p>
-      </div>
-    );
-
-    return (
-
-      <div className="question-board">
-        <form onSubmit={event => { this.onSubmit(event), this.props.dispatch(toggleAnswered()) }}>
-
-
-          <div className="question-img-container" >
-            <img key={this.props.id} src={this.props.question} alt="medicinal herbs" />
-          </div>
-
-          {(this.props.answered === true) ? null :
-            <div className="conditional-input-submit">
-              <input className="userInput"
-                type="text"
-                name="userInput"
-                validate={[required, nonEmpty]}
-                required
-              />
-              <button className="button-submit">Submit</button>
-            </div>
-          }
-        </form>
-        <div className="feedback">
-          {feedbackData}
-        </div>
-      </div>
-    )
-  }
+					{this.props.answered === true ? null : (
+						<div className="conditional-input-submit">
+							<input
+								className="userInput"
+								type="text"
+								name="userInput"
+								validate={[required, nonEmpty]}
+								required
+							/>
+							<button className="button-submit">Submit</button>
+						</div>
+					)}
+				</form>
+				<div className="feedback">{feedbackData}</div>
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions,
-  answered: state.protectedData.answered,
-  question: state.protectedData.data.image,
-  id: state.protectedData.id,
-  feedback: state.protectedData.feedback,
-  sessionTotalScore: state.protectedData.sessionTotalScore,
-  sessionCorrectScore: state.protectedData.sessionCorrectScore
+	questions: state.questions,
+	answered: state.protectedData.answered,
+	question: state.protectedData.data.image,
+	id: state.protectedData.id,
+	feedback: state.protectedData.feedback,
+	sessionTotalScore: state.protectedData.sessionTotalScore,
+	sessionCorrectScore: state.protectedData.sessionCorrectScore,
+	colloquial: state.protectedData.data.colloquial,
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Question));
