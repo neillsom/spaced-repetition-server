@@ -21,8 +21,6 @@ questionSchema.index({ image: 1, answer: 1 }, { unique: true });
 
 questionSchema.set('toObject', {
 	transform: function (doc, ret) {
-    console.log(`doc:`, doc)
-    console.log(`ret:`, ret)
 		ret.id = ret._id;
 		delete ret._id;
 		delete ret.__v;

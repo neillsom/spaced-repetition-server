@@ -11,8 +11,6 @@ const jwtAuth = passport.authenticate('jwt', {
 });
 
 router.get('/questions', jwtAuth, (req, res, next) => {
-	// console.log(`router.get('/questions ...req:`, req, `router.get('/questions ...req end\n=================`);
-	// console.log(`router.get('/questions ...res:`, res, `router.get('/questions ...res end\n=================`);
 	User.findById(req.user.id)
 		.then(user => {
 			res.json(user.questions[user.head]);
@@ -67,8 +65,6 @@ router.post('/questions', jwtAuth, (req, res, next) => {
 				total: questionAnswer.total,
 				mValue: questionAnswer.mValue,
 			};
-
-			console.log(`results:`, results);
 
 			return res.json(results);
 		})
